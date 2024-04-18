@@ -13,5 +13,5 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/auth", user_1.userRouter);
 app.use("/product", product_1.productRouter);
-mongoose_1.default.connect("mongodb+srv://machadop1407:mypassword@cluster0.jqxu4ha.mongodb.net/Cluster0");
+mongoose_1.default.connect("mongodb+srv://RobertCrivatz:4svUbITy2BGj1khn@ibm.iouxiqz.mongodb.net/?retryWrites=true&w=majority&appName=IBM");
 app.listen(3001, () => console.log("Server started"));
