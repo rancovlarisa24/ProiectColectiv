@@ -15,6 +15,8 @@ export const AuthPage = () => {
   );
 };
 
+
+
 const Login = () => {
   const [_, setCookies] = useCookies(["access_token"]);
   const { setIsAuthenticated } = useContext<IShopContext>(ShopContext);
@@ -23,19 +25,22 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    
     try {
+     
       const result = await axios.post("http://localhost:3001/auth/login", {
         username,
         password,
       });
-
+      
       setCookies("access_token", result.data.token);
       window.localStorage.setItem("userID", result.data.userID);
       setIsAuthenticated(true);
+     
       navigate("/");
     } catch (err) {
       let errorMessage: string = "";
@@ -69,14 +74,14 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input
+          <input className="id"
             type="password"
             id="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="b">Login</button>
       </form>
     </div>
   );
@@ -125,7 +130,7 @@ const Register = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className="b">Register</button>
       </form>
     </div>
   );

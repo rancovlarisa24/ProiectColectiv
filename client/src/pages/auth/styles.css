@@ -6,28 +6,41 @@
   background-color: #f2f2f2;
 }
 
+@keyframes animateBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .auth-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 20px;
   width: 400px;
+  font-family: Georgia, serif;
+  background: linear-gradient(270deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+  background-size: 1400% 1400%;
+  animation: animateBackground 20s ease infinite;
+  min-height: 50vh; 
 }
+
 
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  font-family: Georgia, serif;
 }
 
 label {
   font-weight: bold;
   margin-bottom: 5px;
+  font-family: Georgia, serif;
 }
 
 input {
@@ -35,3 +48,26 @@ input {
   font-size: 16px;
   border-radius: 5px;
 }
+
+
+.b {
+  color: white; 
+  padding: 12px 24px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer; 
+  animation: rainbow 10s infinite linear; 
+  font-family: Georgia, serif;
+}
+
+@keyframes rainbow {
+0% { background-color: red; }
+15% { background-color: orange; }
+30% { background-color: yellow; }
+45% { background-color: green; }
+60% { background-color: blue; }
+75% { background-color: indigo; }
+90% { background-color: violet; }
+100% { background-color: red; }
+}
+

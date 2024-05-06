@@ -19,6 +19,7 @@ export interface IShopContext {
   purchasedItems: IProduct[];
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+ 
 }
 
 export const ShopContext = createContext<IShopContext | null>(null);
@@ -29,7 +30,7 @@ export const ShopContextProvider = (props) => {
   const [availableMoney, setAvailableMoney] = useState<number>(0);
   const [purchasedItems, setPurchaseItems] = useState<IProduct[]>([]); // [itemID: amount]
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    cookies.access_token !== null
+    cookies.access_token !== undefined
   );
 
   const { products, fetchProducts } = useGetProducts();
@@ -156,6 +157,8 @@ export const ShopContextProvider = (props) => {
     purchasedItems,
     isAuthenticated,
     setIsAuthenticated,
+ 
+
   };
 
   return (
@@ -164,3 +167,5 @@ export const ShopContextProvider = (props) => {
     </ShopContext.Provider>
   );
 };
+
+
