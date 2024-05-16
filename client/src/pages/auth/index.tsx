@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
+import { useCookies } from "react-cookie";
+import "./styless.css";
 import { UserErrors } from "../../models/errors";
 
 export const RegPage = () => {
@@ -13,6 +14,7 @@ export const RegPage = () => {
 };
 
 const Register = () => {
+  const [_, setCookies] = useCookies(["access_token"]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); 

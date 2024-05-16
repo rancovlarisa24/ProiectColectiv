@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
+  color: #090202;
 }
 
 .product {
@@ -17,6 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #090202;
 }
 
 .product img {
@@ -46,4 +48,28 @@
   background-color: rgb(19, 19, 19);
   color: white;
   cursor: pointer;
+}
+
+
+@media (min-width: 768px) {
+  .navbarLinks {
+    margin-right: 30px;
+  }
+  .navbar a {
+    font-size: 22px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 10px 20px; 
+  }
+  .navbarLinks {
+    margin-right: 40px;
+  }
+  .navbar a {
+    font-size: 24px;
+    margin-right: 30px;
+  }
 }

@@ -9,6 +9,7 @@ import { PurchasedItemsPage } from "./pages/purchased-items";
 import Home  from "./components/Home";
 import { AuthPage } from "./pages/login";
 import { RegPage } from "./pages/auth";
+import { AdminPage } from "./pages/admin";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/purchased-items" element={<PurchasedItemsPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             
           </Routes>
         </ShopContextProvider>

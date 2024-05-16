@@ -5,6 +5,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   place-items: center;
+  color: #090202;
+  
+}
+
+.purchased-items-page{
+  color: #090202;
 }
 
 .purchased-items .item {
@@ -13,6 +19,8 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+ 
+  color: #090202;
 }
 
 .purchased-items .item img {
@@ -23,6 +31,7 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
+  color: #090202;
 }
 
 .purchased-items button {
@@ -33,6 +42,7 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  color: #090202;
   border-radius: 15px;
 }
 
@@ -40,4 +50,29 @@
   background-color: rgb(19, 19, 19);
   color: white;
   cursor: pointer;
+  color: #090202;
+  
+}
+
+@media (min-width: 768px) {
+  .navbarLinks {
+    margin-right: 30px;
+  }
+  .navbar a {
+    font-size: 22px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 10px 20px; 
+  }
+  .navbarLinks {
+    margin-right: 40px;
+  }
+  .navbar a {
+    font-size: 24px;
+    margin-right: 30px;
+  }
 }

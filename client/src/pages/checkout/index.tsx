@@ -16,6 +16,7 @@ export const CheckoutPage = () => {
 
   const navigate = useNavigate();
 
+  
   return (
     <div className="cart">
       <div>
@@ -36,6 +37,8 @@ export const CheckoutPage = () => {
           <button
             onClick={() => {
               checkout(localStorage.getItem("userID"));
+              const larisa = "command was processed!"; 
+              alert("Your " + larisa);
             }}
           >
             {" "}

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { UserErrors } from "../../models/errors";
 import { IShopContext, ShopContext } from "../../context/shop-context";
-import { RegPage } from "../auth";
 
 export const AuthPage = () => {
   return (
@@ -27,35 +26,47 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Special handling for admin credentials
+    if (username === "admin" && password === "admin") {
+      setCookies("access_token", "fake-admin-token", { path: '/' }); // Simulate admin login
+      localStorage.setItem("userID", "admin"); // Set user ID as admin
+      setIsAuthenticated(true); // Set authenticated state to true
+      navigate("/admin"); // Navigate to the admin dashboard
+      return; 
+    }
+
+    // Normal user login attempt
     try {
       const result = await axios.post("http://localhost:3001/auth/login", {
         username,
         password,
       });
-      
-      setCookies("access_token", result.data.token);
-      window.localStorage.setItem("userID", result.data.userID);
+
+      setCookies("access_token", result.data.token, { path: '/' });
+      localStorage.setItem("userID", result.data.userID);
       setIsAuthenticated(true);
       navigate("/");
     } catch (err) {
-      let errorMessage: string = "";
-      switch (err.response.data.type) {
-        case UserErrors.USERNAME_ALREADY_EXISTS:
-          errorMessage = "User already exists";
-          break;
-        case UserErrors.WRONG_CREDENTIALS:
-          errorMessage = "Wrong username/password combination";
-          break;
-        default:
-          errorMessage = "Something went wrong";
+      let errorMessage = "Something went wrong";
+      if (err.response && err.response.data) {
+        switch (err.response.data.type) {
+          case UserErrors.USERNAME_ALREADY_EXISTS:
+            errorMessage = "User already exists";
+            break;
+          case UserErrors.WRONG_CREDENTIALS:
+            errorMessage = "Wrong username/password combination";
+            break;
+          default:
+            errorMessage = "An unexpected error occurred";
+            break;
+        }
       }
-
       alert("ERROR: " + errorMessage);
     }
   };
 
   const handleRegister = () => {
-    navigate("/reg"); 
+    navigate("/reg");
   };
 
   return (
@@ -73,7 +84,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input className="id"
+          <input
             type="password"
             id="password"
             value={password}

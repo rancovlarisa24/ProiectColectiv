@@ -19,6 +19,7 @@ export interface IShopContext {
   purchasedItems: IProduct[];
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+  isAdmin: boolean;
  
 }
 
@@ -33,10 +34,16 @@ export const ShopContextProvider = (props) => {
     cookies.access_token !== undefined
   );
 
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
   const { products, fetchProducts } = useGetProducts();
   const { headers } = useGetToken();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const userID = localStorage.getItem("userID");
+    setIsAdmin(userID === "admin");  
+  }, [isAuthenticated]);
   const fetchAvailableMoney = async () => {
     const res = await axios.get(
       `http://localhost:3001/auth/available-money/${localStorage.getItem(
@@ -157,7 +164,7 @@ export const ShopContextProvider = (props) => {
     purchasedItems,
     isAuthenticated,
     setIsAuthenticated,
- 
+    isAdmin 
 
   };
 

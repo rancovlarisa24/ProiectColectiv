@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #090202;
 }
 
 .cartItem {
@@ -14,6 +15,7 @@
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   margin: 30px;
+  color: #090202;
 }
 
 .cartItem img {
@@ -42,3 +44,31 @@
   margin: 10px;
   cursor: pointer;
 }
+
+
+@media (min-width: 768px) {
+  .navbarLinks {
+    margin-right: 30px;
+  }
+  .navbar a {
+    font-size: 22px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 10px 20px; 
+  }
+  .navbarLinks {
+    margin-right: 40px;
+  }
+  .navbar a {
+    font-size: 24px;
+    margin-right: 30px;
+  }
+}
+
+
+
+
