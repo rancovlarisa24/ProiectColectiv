@@ -7,7 +7,8 @@ import { ShopContextProvider } from "./context/shop-context";
 import { Navbar } from "./components/navbar";
 import { PurchasedItemsPage } from "./pages/purchased-items";
 import Home  from "./components/Home";
-import { AuthPage } from "./pages/auth";
+import { AuthPage } from "./pages/login";
+import { RegPage } from "./pages/auth";
 
 function App() {
   return (
@@ -18,9 +19,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/reg" element={<RegPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/purchased-items" element={<PurchasedItemsPage />} />
+            
           </Routes>
         </ShopContextProvider>
       </Router>

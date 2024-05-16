@@ -30,14 +30,18 @@ export const Navbar = () => {
         ) : (
           <>
             <Link to="/shop">Shop</Link>
+            
             <Link to="/purchased-items">Purchases</Link>
+            
+            <Link to="/"><span> ${availableMoney.toFixed(2)} </span></Link>
+
             <Link to="/checkout">
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link>
+
             <Link to="/" onClick={handleLogout}>
               Logout
             </Link>
-            <span> ${availableMoney.toFixed(2)} </span>
           </>
         )}
       </div>

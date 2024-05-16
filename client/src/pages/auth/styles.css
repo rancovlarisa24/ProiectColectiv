@@ -6,11 +6,6 @@
   background-color: #f2f2f2;
 }
 
-@keyframes animateBackground {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 .auth-container {
   display: flex;
@@ -23,10 +18,8 @@
   margin: 20px;
   width: 400px;
   font-family: Georgia, serif;
-  background: linear-gradient(270deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
-  background-size: 1400% 1400%;
-  animation: animateBackground 20s ease infinite;
-  min-height: 50vh; 
+  background: #151515;
+  color: rgb(248, 247, 247);
 }
 
 
@@ -51,23 +44,12 @@ input {
 
 
 .b {
-  color: white; 
   padding: 12px 24px; 
   border: none;
   border-radius: 5px; 
   cursor: pointer; 
-  animation: rainbow 10s infinite linear; 
   font-family: Georgia, serif;
+  color: rgb(14, 14, 14);
 }
 
-@keyframes rainbow {
-0% { background-color: red; }
-15% { background-color: orange; }
-30% { background-color: yellow; }
-45% { background-color: green; }
-60% { background-color: blue; }
-75% { background-color: indigo; }
-90% { background-color: violet; }
-100% { background-color: red; }
-}
 
