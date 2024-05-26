@@ -10,7 +10,8 @@ import Home  from "./components/Home";
 import { AuthPage } from "./pages/login";
 import { RegPage } from "./pages/auth";
 import { AdminPage } from "./pages/admin";
-
+import { SupplierPage } from "./pages/supplier";
+import { ConfirmationPage } from "./pages/confirmation";
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,8 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/purchased-items" element={<PurchasedItemsPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/supplier" element={<SupplierPage />} />
+            <Route path="/confirmation" element={<ConfirmationPage />} />
             
           </Routes>
         </ShopContextProvider>

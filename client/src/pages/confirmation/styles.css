@@ -1,0 +1,53 @@
+.invoice {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: rgb(6, 6, 6);
+}
+
+.invoice-title {
+  font-size: 2em;
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.invoice-details, .payment-confirmation {
+  margin-bottom: 20px;
+  color: rgb(6, 6, 6);
+}
+
+.invoice-details h2, .payment-confirmation h2 {
+  font-size: 1.5em;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: rgb(6, 6, 6);
+}
+
+.invoice-details ul {
+  list-style-type: none;
+  padding: 0;
+  color: rgb(6, 6, 6);
+}
+
+.invoice-details li {
+  margin-bottom: 10px;
+  color: rgb(6, 6, 6);
+}
+
+.invoice-details p {
+  font-size: 1.2em;
+  margin: 5px 0;
+  color: rgb(6, 6, 6);
+}
+
+.payment-confirmation p {
+  font-size: 1.2em;
+  margin: 5px 0;
+  color: rgb(6, 6, 6);
+}

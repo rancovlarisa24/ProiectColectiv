@@ -26,16 +26,23 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Special handling for admin credentials
+
     if (username === "admin" && password === "admin") {
-      setCookies("access_token", "fake-admin-token", { path: '/' }); // Simulate admin login
-      localStorage.setItem("userID", "admin"); // Set user ID as admin
-      setIsAuthenticated(true); // Set authenticated state to true
-      navigate("/admin"); // Navigate to the admin dashboard
+      setCookies("access_token", "fake-admin-token", { path: '/' }); 
+      localStorage.setItem("userID", "admin"); 
+      setIsAuthenticated(true); 
+      navigate("/admin"); 
       return; 
     }
 
-    // Normal user login attempt
+    if (username === "supplier" && password === "supplier") {
+      setCookies("access_token", "fake-admin-token", { path: '/' }); 
+      localStorage.setItem("userID", "supplier"); 
+      setIsAuthenticated(true); 
+      navigate("/supplier"); 
+      return; 
+    }
+
     try {
       const result = await axios.post("http://localhost:3001/auth/login", {
         username,

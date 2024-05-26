@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { IShopContext, ShopContext } from "../context/shop-context";
 
 export const Navbar = () => {
-  const { availableMoney, isAuthenticated, setIsAuthenticated, isAdmin } =
+  const { availableMoney, isAuthenticated, setIsAuthenticated, isAdmin, isSupplier} =
     useContext<IShopContext>(ShopContext);
   const navigate = useNavigate();
 
@@ -28,10 +28,12 @@ export const Navbar = () => {
         {!isAuthenticated ? (
           <Link to="/auth" onClick={handleLogin}>Login</Link>
         ) : isAdmin ? (
-          // For admin users, only show the Logout link
           <Link to="/" onClick={handleLogout}>Logout</Link>
-        ) : (
-          // For regular users, show all the links
+        ) : isSupplier ?(
+          <Link to="/" onClick={handleLogout}>Logout</Link>
+        ) :
+        
+        (
           <>
             <Link to="/shop">Shop</Link>
             <Link to="/purchased-items">Purchases</Link>

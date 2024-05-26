@@ -7,19 +7,24 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useGetToken } from "../hooks/useGetToken";
 
+ interface CheckoutResult {
+    success: boolean;
+    errorMessage?: string; 
+  }
 export interface IShopContext {
   getCartItemCount: (itemId: string) => number;
   addToCart: (itemId: string) => void;
   updateCartItemCount: (newAmount: number, itemId: string) => void;
   getTotalCartAmount: () => number;
   removeFromCart: (itemId: string) => void;
-  checkout: (customerID: string) => void;
+  checkout: (customerID: string) => Promise<CheckoutResult>;
   availableMoney: number;
   fetchAvailableMoney: () => void;
   purchasedItems: IProduct[];
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   isAdmin: boolean;
+  isSupplier: boolean;
  
 }
 
@@ -27,14 +32,15 @@ export const ShopContext = createContext<IShopContext | null>(null);
 
 export const ShopContextProvider = (props) => {
   const [cookies, setCookies] = useCookies(["access_token"]);
-  const [cartItems, setCartItems] = useState<{ string: number } | {}>({}); // { itemID: amount }
+  const [cartItems, setCartItems] = useState<{ string: number } | {}>({}); 
   const [availableMoney, setAvailableMoney] = useState<number>(0);
-  const [purchasedItems, setPurchaseItems] = useState<IProduct[]>([]); // [itemID: amount]
+  const [purchasedItems, setPurchaseItems] = useState<IProduct[]>([]); 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     cookies.access_token !== undefined
   );
 
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isSupplier, setIsSupplier] = useState<boolean>(false);
 
   const { products, fetchProducts } = useGetProducts();
   const { headers } = useGetToken();
@@ -43,6 +49,7 @@ export const ShopContextProvider = (props) => {
   useEffect(() => {
     const userID = localStorage.getItem("userID");
     setIsAdmin(userID === "admin");  
+    setIsSupplier(userID === "supplier");
   }, [isAuthenticated]);
   const fetchAvailableMoney = async () => {
     const res = await axios.get(
@@ -120,20 +127,23 @@ export const ShopContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
   };
 
-  const checkout = async () => {
+
+ 
+  
+  const checkout = async ():  Promise<CheckoutResult> => {
     const body = { customerID: localStorage.getItem("userID"), cartItems };
     try {
-      const res = await axios.post(
-        "http://localhost:3001/products/checkout",
-        body,
-        { headers }
-      );
+      const res = await axios.post("http://localhost:3001/products/checkout", body, { headers });
       setPurchaseItems(res.data.purchasedItems);
       fetchAvailableMoney();
       fetchProducts();
-      navigate("/");
+      return { success: true };  
     } catch (err) {
-      let errorMessage: string = "";
+      let errorMessage = "Something went wrong"; 
+      if (err.response && err.response.data && err.response.data.message) {
+        errorMessage = err.response.data.message;
+      }
+  
       switch (err.response.data.type) {
         case ProductErrors.NO_PRODUCT_FOUND:
           errorMessage = "No product found";
@@ -145,10 +155,11 @@ export const ShopContextProvider = (props) => {
           errorMessage = "Not enough stock";
           break;
         default:
-          errorMessage = "Something went wrong";
+          break; 
       }
-
-      alert("ERROR: " + errorMessage);
+  
+      alert(errorMessage); 
+      return { success: false, errorMessage };  
     }
   };
 
@@ -164,7 +175,8 @@ export const ShopContextProvider = (props) => {
     purchasedItems,
     isAuthenticated,
     setIsAuthenticated,
-    isAdmin 
+    isAdmin,
+    isSupplier
 
   };
 
