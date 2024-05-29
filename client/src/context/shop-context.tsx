@@ -25,6 +25,7 @@ export interface IShopContext {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   isAdmin: boolean;
   isSupplier: boolean;
+  addMoneyToBalance: (amount: number) => void;
  
 }
 
@@ -51,6 +52,9 @@ export const ShopContextProvider = (props) => {
     setIsAdmin(userID === "admin");  
     setIsSupplier(userID === "supplier");
   }, [isAuthenticated]);
+
+
+  
   const fetchAvailableMoney = async () => {
     const res = await axios.get(
       `http://localhost:3001/auth/available-money/${localStorage.getItem(
@@ -128,7 +132,15 @@ export const ShopContextProvider = (props) => {
   };
 
 
- 
+  const addMoneyToBalance = (amount: number) => {
+    setAvailableMoney((prev) => {
+      const newBalance = prev + amount;
+      localStorage.setItem("availableMoney", newBalance.toString());
+      return newBalance;
+    });
+  };
+  
+
   
   const checkout = async ():  Promise<CheckoutResult> => {
     const body = { customerID: localStorage.getItem("userID"), cartItems };
@@ -176,7 +188,8 @@ export const ShopContextProvider = (props) => {
     isAuthenticated,
     setIsAuthenticated,
     isAdmin,
-    isSupplier
+    isSupplier,
+    addMoneyToBalance
 
   };
 

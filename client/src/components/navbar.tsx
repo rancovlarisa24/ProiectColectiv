@@ -37,7 +37,7 @@ export const Navbar = () => {
           <>
             <Link to="/shop">Shop</Link>
             <Link to="/purchased-items">Purchases</Link>
-            <Link to="/"><span> ${availableMoney.toFixed(2)} </span></Link>
+            <Link to="/addMoney"><span> ${availableMoney.toFixed(2)} </span></Link>
             <Link to="/checkout">
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link>

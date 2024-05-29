@@ -22,7 +22,7 @@ export const CheckoutPage = () => {
     const result = await checkout(localStorage.getItem("userID"));
     if (!result.success) {
       console.log("Checkout failed with error:", result.errorMessage);
-      return; // Exit the function if checkout fails
+      return; 
     }
     const purchasedProducts = products
   .filter(product => getCartItemCount(product._id) !== 0)

@@ -12,6 +12,8 @@ import { RegPage } from "./pages/auth";
 import { AdminPage } from "./pages/admin";
 import { SupplierPage } from "./pages/supplier";
 import { ConfirmationPage } from "./pages/confirmation";
+import { AddMoneyPage } from "./pages/addMoney";
+
 function App() {
   return (
     <div className="App">
@@ -28,7 +30,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/supplier" element={<SupplierPage />} />
             <Route path="/confirmation" element={<ConfirmationPage />} />
-            
+            <Route path="/addMoney" element={<AddMoneyPage />} />
           </Routes>
         </ShopContextProvider>
       </Router>
