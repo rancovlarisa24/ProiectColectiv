@@ -7,13 +7,15 @@ const Supplier = () => {
     const { setIsAuthenticated } = useContext(ShopContext);
     const navigate = useNavigate();
 
-    
+    const handleViewReports = () => {
+        console.log("Managing products");
+        navigate('/supplier-products');
+    };
 
     return (
         <div className="admin-dashboard">
             <h1>Supplier Dashboard</h1>
-            <button >Manage products</button>
-           
+            <button onClick={handleViewReports}>Manage products</button>
         </div>
     );
 };

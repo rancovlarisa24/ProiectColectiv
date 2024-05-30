@@ -9,19 +9,18 @@ const Admin = () => {
 
     const handleManageUsers = () => {
         console.log("Managing users");
+        navigate('/admin-users');
     };
 
     const handleViewReports = () => {
         console.log("Viewing reports");
-    
+        navigate('/admin-products');
     };
 
     const handleSettings = () => {
         console.log("Adjusting settings");
-    
+        navigate('/admin-settings');
     };
-
- 
 
     return (
         <div className="admin-dashboard">

@@ -49,7 +49,7 @@ export const AddMoneyPage = () => {
               type="text"
               id="iban"
               
-              placeholder="Enter IBAN"
+              placeholder="Enter Card Number"
             />
           </div>
           <div className="form-group">
